@@ -5,13 +5,13 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar(){
     return(
-        <nav className="relative p-6 mx-auto bg-green-100">
+        <nav className="relative p-4 mx-auto bg-green-100">
             <div className="flex justify-between items-center mx-auto">
                 <div className="pt-2 flex-shrink-0">
                     <img src="#" alt="logo"></img>
                 </div>
                 <div className="hidden md:flex items-center bg-white rounded-lg shadow space-x-2">
-                    <input type="text" placeholder="Search..." className="px-4 py-2 w-128 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 md:w-96"></input>
+                    <input type="text" placeholder="Search..." className="px-2 py-1 w-128 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 md:w-96"></input>
                     <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-400 transition-colors duration-300 w-12 md:w-20"><FontAwesomeIcon icon={faSearch} /></button>
                 </div>
                 <div className="hidden md:flex space-x-8 ">
