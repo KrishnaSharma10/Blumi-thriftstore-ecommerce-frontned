@@ -9,7 +9,8 @@ const router = createBrowserRouter(
   <Route path='/' element={<MainLayout/>}>
     <Route index element={<HomePage/>}/>
     <Route path='/login' element={<LoginRegister/>}/>
-  </Route>)
+  </Route>
+  )
 ); 
 
 function App(){
@@ -20,4 +21,4 @@ function App(){
   )
 }
 
-export default App
+export default App;
