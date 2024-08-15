@@ -15,13 +15,14 @@ const NavLinks = () =>{
 
 function Navbar(){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     return(
-        <nav className="sticky relative p-4 mx-auto bg-blue-100">
+        <nav className="sticky top-0 z-50 p-4 mx-auto bg-blue-100">
             <div className="flex justify-between items-center mx-auto">
                 <div className="pt-2 flex-shrink-0">
                     <Link to='/'>
@@ -38,15 +39,20 @@ function Navbar(){
                     </button>
                 </div>
                 <div className="hidden md:flex space-x-8 ">
-                    <NavLinks/>
+                    {isLoggedIn ? <NavLinks /> : null}
                 </div>
-                <Link to="/login" className="md:bg-white text-blue-500 font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-400 hover:text-white transition-colors duration-300  hidden md:inline-block">
-                    Register
-                </Link>
+                {!isLoggedIn && (
+                    <Link
+                        to="/login"
+                        className="md:bg-white text-blue-500 font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-400 hover:text-white transition-colors duration-300 hidden md:inline-block"
+                    >
+                        Register/Login
+                    </Link>
+                )}
             </div>
             {isMenuOpen && (
                 <div className="md:hidden flex flex-col space-y-2 mt-4">
-                    <NavLinks />
+                    {isLoggedIn ? <NavLinks /> : null}
                 </div>
             )}
         </nav>
