@@ -24,7 +24,9 @@ function Navbar(){
         <nav className="sticky relative p-4 mx-auto bg-blue-100">
             <div className="flex justify-between items-center mx-auto">
                 <div className="pt-2 flex-shrink-0">
+                    <Link to='/'>
                     <img src="#" alt="logo"></img>
+                    </Link>
                 </div>
                 <div className="flex items-center bg-white rounded-lg shadow space-x-2">
                     <input type="text" placeholder="Search..." className="px-2 py-1 w-48 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 md:w-96"></input>
