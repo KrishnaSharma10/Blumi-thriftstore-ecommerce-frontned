@@ -30,7 +30,7 @@ const Footer = () => {
                         <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Order Status</a></li>
                         <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Privacy </a></li>
                         <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Return Policy </a></li>
-                        <!-- <li><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300"></a></li> -->
+                        
                     </ul>
                 </div>
                 <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 md:mb-0">
@@ -45,7 +45,7 @@ const Footer = () => {
             </div>
         </div>
     </footer>
-        </>
+        
     )
 }
 
