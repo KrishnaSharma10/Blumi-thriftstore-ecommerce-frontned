@@ -1,52 +1,51 @@
 import React from 'react'
+import { NavLink, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const Footer = () => {
-    
-    return(
-        <footer class="bg-gray-800 py-16">
-        <div class="container mx-auto">
-            <div class="flex flex-wrap">
-                <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 md:mb-0">
-                    <h4 class="text-lg font-medium text-white capitalize mb-8 relative before:content-[''] before:absolute before:left-0 before:bottom-[-10px] before:w-12 before:h-0.5 before:bg-pink-500">Company</h4>
-                    <ul class="list-none">
-                        <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">About us</a></li>
-                        <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Our team</a></li>
-                        <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Product Documentation</a></li>
-                        <li><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Investors</a></li>
-                    </ul>
-                </div>
-                <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 md:mb-0">
-                    <h4 class="text-lg font-medium text-white capitalize mb-8 relative before:content-[''] before:absolute before:left-0 before:bottom-[-10px] before:w-12 before:h-0.5 before:bg-pink-500">Need Help?</h4>
-                    <ul class="list-none">
-                        <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">FAQ</a></li>
-                        <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Payment option</a></li>
-                        <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Shipping</a></li>
-                        <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Terms of use</a></li>
-                    </ul>
-                </div>
-                <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 md:mb-0">
-                    <h4 class="text-lg font-medium text-white capitalize mb-8 relative before:content-[''] before:absolute before:left-0 before:bottom-[-10px] before:w-12 before:h-0.5 before:bg-pink-500">Services</h4>
-                    <ul class="list-none">
-                        <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Order Status</a></li>
-                        <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Privacy </a></li>
-                        <li class="mb-2"><a href="#" class="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Return Policy </a></li>
-                        
-                    </ul>
-                </div>
-                <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 md:mb-0">
-                    <h4 class="text-lg font-medium text-white capitalize mb-8 relative before:content-[''] before:absolute before:left-0 before:bottom-[-10px] before:w-12 before:h-0.5 before:bg-pink-500">Contact us</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="h-10 w-10 bg-white bg-opacity-20 text-white rounded-full flex items-center justify-center hover:bg-white hover:text-gray-800 transition-all duration-500"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="h-10 w-10 bg-white bg-opacity-20 text-white rounded-full flex items-center justify-center hover:bg-white hover:text-gray-800 transition-all duration-500"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="h-10 w-10 bg-white bg-opacity-20 text-white rounded-full flex items-center justify-center hover:bg-white hover:text-gray-800 transition-all duration-500"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="h-10 w-10 bg-white bg-opacity-20 text-white rounded-full flex items-center justify-center hover:bg-white hover:text-gray-800 transition-all duration-500"><i class="fab fa-linkedin-in"></i></a>
+    return (
+        <footer className="bg-gray-800 py-16 w-full mt-20">
+            <div className="container mx-auto">
+                <div className="flex flex-wrap">
+                    <div className="w-full md:w-1/4 px-4 mb-8 md:mb-0">
+                        <h4 className="text-lg font-medium text-white capitalize mb-8 relative before:content-[''] before:absolute before:left-0 before:bottom-[-10px] before:w-12 before:h-0.5 before:bg-pink-500">Company</h4>
+                        <ul className="list-none">
+                            <li className="mb-2"><NavLink to='/AboutUs' className="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">About us</NavLink></li>
+                            <li className="mb-2"><NavLink to='' className="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Our team</NavLink></li>
+                            <li className="mb-2"><NavLink to='' className="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Product Documentation</NavLink></li>
+                            <li><NavLink to="#" className="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Investors</NavLink></li>
+                        </ul>
+                    </div>
+                    <div className="w-full md:w-1/4 px-4 mb-8 md:mb-0">
+                        <h4 className="text-lg font-medium text-white capitalize mb-8 relative before:content-[''] before:absolute before:left-0 before:bottom-[-10px] before:w-12 before:h-0.5 before:bg-pink-500">Need Help?</h4>
+                        <ul className="list-none">
+                            <li className="mb-2"><NavLink to='' className="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">FAQ</NavLink></li>
+                            <li className="mb-2"><NavLink to='' className="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Payment option</NavLink></li>
+                            <li className="mb-2"><NavLink to='' className="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Shipping</NavLink></li>
+                            <li className="mb-2"><NavLink to='' className="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Terms of use</NavLink></li>
+                        </ul>
+                    </div>
+                    <div className="w-full md:w-1/4 px-4 mb-8 md:mb-0">
+                        <h4 className="text-lg font-medium text-white capitalize mb-8 relative before:content-[''] before:absolute before:left-0 before:bottom-[-10px] before:w-12 before:h-0.5 before:bg-pink-500">Services</h4>
+                        <ul className="list-none">
+                            <li className="mb-2"><NavLink to='' className="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Order Status</NavLink></li>
+                            <li className="mb-2"><NavLink to='' className="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Privacy </NavLink></li>
+                            <li className="mb-2"><NavLink to='' className="text-base font-light text-gray-400 capitalize hover:text-white hover:pl-2 transition-all duration-300">Return Policy </NavLink></li>
+                        </ul>
+                    </div>
+                    <div className="w-full md:w-1/4 px-4 mb-8 md:mb-0">
+                        <h4 className="text-lg font-medium text-white capitalize mb-8 relative before:content-[''] before:absolute before:left-0 before:bottom-[-10px] before:w-12 before:h-0.5 before:bg-pink-500">Contact us</h4>
+                        <div className="flex space-x-4">
+                            <NavLink to='' className="h-10 w-10 bg-white bg-opacity-20 text-white rounded-full flex items-center justify-center hover:bg-white hover:text-gray-800 transition-all duration-500"><FontAwesomeIcon icon={faHeart} /></NavLink>
+                            <NavLink to='' className="h-10 w-10 bg-white bg-opacity-20 text-white rounded-full flex items-center justify-center hover:bg-white hover:text-gray-800 transition-all duration-500"><FontAwesomeIcon icon={faHeart} /></NavLink>
+                            <NavLink to='' className="h-10 w-10 bg-white bg-opacity-20 text-white rounded-full flex items-center justify-center hover:bg-white hover:text-gray-800 transition-all duration-500"><FontAwesomeIcon icon={faHeart} /></NavLink>
+                            <NavLink to='' className="h-10 w-10 bg-white bg-opacity-20 text-white rounded-full flex items-center justify-center hover:bg-white hover:text-gray-800 transition-all duration-500"><FontAwesomeIcon icon={faHeart} /></NavLink>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-        
+        </footer>
     )
 }
-
 export default Footer;
