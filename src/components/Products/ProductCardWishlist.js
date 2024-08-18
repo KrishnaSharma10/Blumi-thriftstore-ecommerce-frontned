@@ -14,9 +14,6 @@ const ProductCardWishlist = () => {
                 <h3 className="text-lg font-semibold">{productName}</h3>
                 <p className="text-lg font-bold text-blue-800">Rs. {productPrice}</p>
             </div>
-            <button className="absolute top-2 right-2 text-xl text-black hover:text-red-600 transition-colors">
-                <FontAwesomeIcon icon={faTimes} />
-            </button>
             <button className="absolute bottom-4 right-2 text-xl text-red-500 hover:text-red-600 transition-colors">
                 <FontAwesomeIcon icon={faHeart} />
             </button>
