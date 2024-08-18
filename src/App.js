@@ -1,6 +1,7 @@
 import { Route,createBrowserRouter,createRoutesFromElements,RouterProvider } from "react-router-dom";
 import HomePage from "./pages/homepage";
 import LoginRegister from "./components/login/register/LoginRegister";
+import Cart from "./pages/Cart";
 import React from "react";
 import MainLayout from "./Layouts/MainLayout";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -11,6 +12,7 @@ const router = createBrowserRouter(
     <Route index element={<HomePage/>}/>
     <Route path='/login' element={<LoginRegister/>}/>
     <Route path="*" element={<NotFoundPage/>}/>
+    <Route path="/cart" element={<Cart/>}/>
   </Route>
   )
 ); 
