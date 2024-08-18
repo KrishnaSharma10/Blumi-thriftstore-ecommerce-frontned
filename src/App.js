@@ -2,6 +2,7 @@ import { Route,createBrowserRouter,createRoutesFromElements,RouterProvider } fro
 import HomePage from "./pages/homepage";
 import LoginRegister from "./components/login/register/LoginRegister";
 import Cart from "./pages/Cart";
+import Wishlist from "./pages/Wishlist";
 import React from "react";
 import MainLayout from "./Layouts/MainLayout";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
     <Route path='/login' element={<LoginRegister/>}/>
     <Route path="*" element={<NotFoundPage/>}/>
     <Route path="/cart" element={<Cart/>}/>
+    <Route path="/wishlist" element={<Wishlist/>}/>
   </Route>
   )
 ); 
