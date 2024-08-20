@@ -33,7 +33,7 @@ function Navbar(){
                     <input type="text" placeholder="Search..." className="px-2 py-1 w-48 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 md:w-96"></input>
                     <button aria-label = "Search" className="bg-blue-500 text-white px-1.5 py-2 rounded-lg hover:bg-blue-400 transition-colors duration-300 w-6 md:w-20"><FontAwesomeIcon icon={faSearch} className="text-sm md:text-lg"/></button>
                 </div>
-                <NavLink to='/Browse' className='hidden md:inline hover:text-red-700 transition-colors duration-300 text-2xl'><span className="ml-1">Browse Products</span></NavLink>
+                <NavLink to='/browseproducts' className='hidden md:inline hover:text-red-700 transition-colors duration-300 text-2xl'><span className="ml-1">Browse Products</span></NavLink>
                 <div className="md:hidden">
                     <button onClick={toggleMenu} className="text-blue-500 focus:outline-none">
                         <FontAwesomeIcon icon={faBars} size="lg" />
@@ -54,7 +54,7 @@ function Navbar(){
             {isMenuOpen && (
                 <div className="md:hidden flex flex-col space-y-2 mt-4">
                     {isLoggedIn ? <NavLinks /> : null}
-                    <NavLink to='/Browse' className='hover:text-red-700 transition-colors duration-300 text-xl'><span className="ml-1">Browse</span></NavLink>
+                    <NavLink to='/browseproducts' className='hover:text-red-700 transition-colors duration-300 text-xl'><span className="ml-1">Browse</span></NavLink>
                 </div>
             )}
         </nav>
