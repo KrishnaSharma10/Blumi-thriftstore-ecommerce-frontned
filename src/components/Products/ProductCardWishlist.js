@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import productImage from '../assets/random.jpg';
 
 const ProductCardWishlist = () => {
@@ -14,6 +14,9 @@ const ProductCardWishlist = () => {
                 <h3 className="text-lg font-semibold">{productName}</h3>
                 <p className="text-lg font-bold text-blue-800">Rs. {productPrice}</p>
             </div>
+            <button className="absolute bottom-20 right-2 bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md transition-colors">
+                <FontAwesomeIcon icon={faShoppingCart} />
+            </button>
             <button className="absolute bottom-4 right-2 text-xl text-red-500 hover:text-red-600 transition-colors">
                 <FontAwesomeIcon icon={faHeart} />
             </button>
