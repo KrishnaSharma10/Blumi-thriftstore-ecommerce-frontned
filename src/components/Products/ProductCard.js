@@ -5,7 +5,7 @@ import random from '../assets/random.jpg';
 
 const ProductCard = () => {
     return (
-        <div className="bg-blue-100 w-72 min-h-[20rem] shadow-lg rounded-md overflow-hidden relative">
+        <div className="bg-blue-100 w-full sm:w-64 md:w-72 lg:w-80 min-h-[20rem] shadow-lg rounded-md overflow-hidden relative">
             <img src={random} className="w-full h-40 object-cover" alt="hello" />
             <div className="p-5 flex flex-col gap-3">
                 <h2 className="font-semibold text-2xl">Headset</h2>

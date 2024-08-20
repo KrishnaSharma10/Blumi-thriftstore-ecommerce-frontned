@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "../components/Home/slider";
 import SubHeading from "../components/Home/SubHeading";
-import ProductGrid from "../components/Home/ProductGrid";
+import ProductGrid from "../components/Products/ProductGrid";
 
 function HomePage(){
     return(
