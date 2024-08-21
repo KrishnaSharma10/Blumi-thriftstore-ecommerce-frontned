@@ -13,9 +13,21 @@ const NavLinks = () =>{
     )
 }
 
+const RegisterButton = () => {
+    return (
+        <Link
+            to="/login"
+            className="bg-white text-blue-500 font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-400 hover:text-white transition-colors duration-300 "
+        >
+            Register/Login
+        </Link>
+    );
+};
+
+
 function Navbar(){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -42,18 +54,16 @@ function Navbar(){
                 <div className="hidden md:flex space-x-8 ">
                     {isLoggedIn ? <NavLinks /> : null}
                 </div>
-                {!isLoggedIn && (
-                    <Link
-                        to="/login"
-                        className="md:bg-white text-blue-500 font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-400 hover:text-white transition-colors duration-300 hidden md:inline-block"
-                    >
-                        Register/Login
-                    </Link>
-                )}
+                <div className="hidden md:flex">
+                    {!isLoggedIn && (
+                        <RegisterButton/>
+                    )}
+                </div>
             </div>
             {isMenuOpen && (
                 <div className="md:hidden flex flex-col space-y-2 mt-4">
                     {isLoggedIn ? <NavLinks /> : null}
+                    {!isLoggedIn ? <RegisterButton/>:null}
                     <NavLink to='/browseproducts' className='hover:text-red-700 transition-colors duration-300 text-xl'><span className="ml-1">Browse Products</span></NavLink>
                 </div>
             )}
