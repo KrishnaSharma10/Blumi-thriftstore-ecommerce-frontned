@@ -4,7 +4,7 @@ import { faHeart, faTimes } from '@fortawesome/free-solid-svg-icons';
 import productImage from '../assets/random.jpg';
 
 const ProductCardWishlist = () => {
-    const productName = 'Headset';
+    const productName = 'T-Shirt';
     const productPrice = 1050;
 
     return (

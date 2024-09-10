@@ -4,7 +4,7 @@ import { faPlus, faMinus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import productImage from '../assets/random.jpg';
 
 const ProductCardCart = () => {
-    const productName = 'Headset';
+    const productName = 'T-Shirt';
     const productPrice = 1050;
     const productQuantity = 1;
     const totalPrice = productPrice * productQuantity;
