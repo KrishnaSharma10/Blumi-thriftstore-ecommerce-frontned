@@ -1,30 +1,38 @@
-import { Route,createBrowserRouter,createRoutesFromElements,RouterProvider } from "react-router-dom";
-import HomePage from "./pages/homepage";
-import LoginRegister from "./components/login/register/LoginRegister";
-import Cart from "./pages/Cart";
-import Wishlist from "./pages/Wishlist";
-import React from "react";
-import MainLayout from "./Layouts/MainLayout";
-import NotFoundPage from "./pages/NotFoundPage";
+import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
+import HomePage from './pages/homepage';
+import Login from './components/login/register/Login';
+import Cart from './pages/Cart';
+import Wishlist from './pages/Wishlist';
+import BrowseProducts from './pages/BrowseProducts';
+import MainLayout from './Layouts/MainLayout';
+import NotFoundPage from './pages/NotFoundPage';
+import AuthLayout from './Layouts/AuthLayout';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-  <Route path='/' element={<MainLayout/>}>
-    <Route index element={<HomePage/>}/>
-    <Route path='/login' element={<LoginRegister/>}/>
-    <Route path="*" element={<NotFoundPage/>}/>
-    <Route path="/cart" element={<Cart/>}/>
-    <Route path="/wishlist" element={<Wishlist/>}/>
-  </Route>
-  )
-); 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <MainLayout />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: 'cart', element: <Cart /> },
+      { path: 'wishlist', element: <Wishlist /> },
+      { path: 'browseproducts', element: <BrowseProducts /> },
+      { path: '*', element: <NotFoundPage /> },
+    ],
+  },
+  {
+    path: '/login',
+    element: <AuthLayout />,
+    children: [{ index: true, element: <Login /> }],
+  },
+]);
 
-function App(){
-  return(
+function App() {
+  return (
     <div>
-      <RouterProvider router={router}></RouterProvider>
+      <RouterProvider router={router} />
     </div>
-  )
+  );
 }
 
 export default App;
