@@ -2,13 +2,14 @@ import React,{useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faShoppingCart, faUser, faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 import { NavLink,Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const NavLinks = () =>{
     return(
         <>
         <NavLink to="/Wishlist" className="hover:text-red-700 transition-colors duration-300"><FontAwesomeIcon icon={faHeart} /><span className="ml-1">Wishlist</span></NavLink>
-        <NavLink to="/Cart" className="hover:text-red-700 transition-colors duration-300"><FontAwesomeIcon icon={faShoppingCart} /><span className="ml-1">Cart</span></NavLink>
-        <NavLink to="#" className="hover:text-red-700 transition-colors duration-300"><FontAwesomeIcon icon={faUser} /><span className="ml-1">Account</span></NavLink>
+        <NavLink to="/Cart" className="hover:text-blue-800 transition-colors duration-300"><FontAwesomeIcon icon={faShoppingCart} /><span className="ml-1">Cart</span></NavLink>
+        <NavLink to="#" className="hover:text-blue-800 transition-colors duration-300"><FontAwesomeIcon icon={faUser} /><span className="ml-1">Account</span></NavLink>
         </>
     )
 }
@@ -27,25 +28,25 @@ const RegisterButton = () => {
 
 function Navbar(){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     return(
-        <nav className="sticky top-0 z-50 p-4 mx-auto bg-blue-100">
+        <nav className="bg-blue-100 sticky top-0 z-50 w-full p-4">
             <div className="flex justify-between items-center mx-auto">
-                <div className="pt-2 flex-shrink-0">
+                <div className="flex items-center w-10 h-10">
                     <Link to='/'>
-                    <img src="#" alt="logo"></img>
+                    <img src={logo} alt="logo" className=""></img>
                     </Link>
                 </div>
                 <div className="hidden md:flex items-center bg-white rounded-lg shadow space-x-2">
                     <input type="text" placeholder="Search..." className="px-2 py-1 w-48 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 md:w-96"></input>
                     <button aria-label = "Search" className="bg-blue-500 text-white px-1.5 py-2 rounded-lg hover:bg-blue-400 transition-colors duration-300 w-6 md:w-20"><FontAwesomeIcon icon={faSearch} className="text-sm md:text-lg"/></button>
                 </div>
-                <NavLink to='/browseproducts' className='hidden md:inline hover:text-red-700 transition-colors duration-300 text-2xl'><span className="ml-1">Browse Products</span></NavLink>
+                <NavLink to='/browseproducts' className='hidden md:inline hover:text-blue-700 transition-colors duration-300 text-2xl'><span className="ml-1">Browse Products</span></NavLink>
                 <div className="md:hidden">
                     <button onClick={toggleMenu} className="text-blue-500 focus:outline-none">
                         <FontAwesomeIcon icon={faBars} size="lg" />

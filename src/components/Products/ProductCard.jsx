@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
 import random from '../assets/random.jpg';
 
-const ProductCard = () => {
+const ProductCard = ({image,title,price}) => {
     return (
         <div className="bg-blue-100 w-full sm:w-64 md:w-72 lg:w-80 min-h-[20rem] shadow-lg rounded-md overflow-hidden relative">
-            <img src={random} className="w-full h-40 object-cover" alt="hello" />
+            <img src={random} className="w-full h-40 object-cover" alt={title} />
             <div className="p-5 flex flex-col gap-3">
                 <h2 className="font-semibold text-2xl">T-Shirt</h2>
                 <span className="text-xl font-bold">
