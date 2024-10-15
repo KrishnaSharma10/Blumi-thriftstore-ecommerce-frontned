@@ -19,7 +19,6 @@ const ProductCard = ({image,title,price}) => {
                     </button>
                 </div>
             </div>
-            <FontAwesomeIcon icon={faHeart} className="absolute bottom-8 right-5 text-xl text-white-500 hover:text-red-600 cursor-pointer transition-colors duration-300" />
         </div>
     );
 }

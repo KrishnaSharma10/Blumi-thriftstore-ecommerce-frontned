@@ -7,7 +7,6 @@ import logo from "../assets/logo.png";
 const NavLinks = () =>{
     return(
         <>
-        <NavLink to="/Wishlist" className="hover:text-red-700 transition-colors duration-300"><FontAwesomeIcon icon={faHeart} /><span className="ml-1">Wishlist</span></NavLink>
         <NavLink to="/Cart" className="hover:text-blue-800 transition-colors duration-300"><FontAwesomeIcon icon={faShoppingCart} /><span className="ml-1">Cart</span></NavLink>
         <NavLink to="#" className="hover:text-blue-800 transition-colors duration-300"><FontAwesomeIcon icon={faUser} /><span className="ml-1">Account</span></NavLink>
         </>
@@ -37,7 +36,7 @@ function Navbar(){
     return(
         <nav className="bg-blue-100 sticky top-0 z-50 w-full p-4">
             <div className="flex justify-between items-center mx-auto">
-                <div className="flex items-center w-10 h-10">
+                <div className="flex items-center w-24 h-10">
                     <Link to='/'>
                     <img src={logo} alt="logo" className=""></img>
                     </Link>
