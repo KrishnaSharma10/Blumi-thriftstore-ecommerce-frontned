@@ -1,8 +1,10 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faShoppingCart, faUser, faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 import { NavLink,Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import LogoutButton from "../login/Logoutbutton";
 
 const NavLinks = () =>{
     return(
@@ -17,7 +19,7 @@ const NavLinks = () =>{
 const RegisterButton = () => {
     return (
         <Link
-            to="/login"
+            to="/register"
             className="bg-white text-blue-500 font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-400 hover:text-white transition-colors duration-300 "
         >
             Login
@@ -25,24 +27,18 @@ const RegisterButton = () => {
     );
 };
 
-const LogoutButton = () => {
-    return (
-        <Link
-            to=""
-            className="bg-white text-blue-500 font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-400 hover:text-white transition-colors duration-300 "
-        >
-            Logout
-        </Link>
-    );
-}
-
 function Navbar(){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const { user,isAuthenticated } = useAuth0();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    /*useEffect(() => {
+        setIsLoggedIn(isAuthenticated);
+    }, [isAuthenticated]); */
 
     return(
         <nav className="bg-blue-100 sticky top-0 z-50 w-full p-4">

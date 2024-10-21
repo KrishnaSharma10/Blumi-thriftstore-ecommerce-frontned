@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 import HomePage from './pages/homepage';
-import Login from './components/login/register/Login';
+import Register from './components/login/register/Register';
 import Cart from './pages/Cart';
 import Wishlist from './pages/Wishlist';
 import BrowseProducts from './pages/BrowseProducts';
@@ -21,9 +21,9 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/login',
+    path: '/register',
     element: <AuthLayout />,
-    children: [{ index: true, element: <Login /> }],
+    children: [{ index: true, element: <Register /> }],
   },
 ]);
 
