@@ -7,8 +7,9 @@ import logo from "../assets/logo.png";
 const NavLinks = () =>{
     return(
         <>
-        <NavLink to="/Cart" className="hover:text-blue-800 transition-colors duration-300"><FontAwesomeIcon icon={faShoppingCart} /><span className="ml-1">Cart</span></NavLink>
-        <NavLink to="#" className="hover:text-blue-800 transition-colors duration-300"><FontAwesomeIcon icon={faUser} /><span className="ml-1">Account</span></NavLink>
+        <NavLink to="/Cart" className="hover:text-blue-800 transition-colors duration-300 mt-2"><FontAwesomeIcon icon={faShoppingCart} /><span className="ml-1">Cart</span></NavLink>
+        <NavLink to="#" className="hover:text-blue-800 transition-colors duration-300 mt-2"><FontAwesomeIcon icon={faUser} /><span className="ml-1">Account</span></NavLink>
+        <LogoutButton/>
         </>
     )
 }
@@ -19,11 +20,21 @@ const RegisterButton = () => {
             to="/login"
             className="bg-white text-blue-500 font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-400 hover:text-white transition-colors duration-300 "
         >
-            Register/Login
+            Login
         </Link>
     );
 };
 
+const LogoutButton = () => {
+    return (
+        <Link
+            to=""
+            className="bg-white text-blue-500 font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-400 hover:text-white transition-colors duration-300 "
+        >
+            Logout
+        </Link>
+    );
+}
 
 function Navbar(){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
