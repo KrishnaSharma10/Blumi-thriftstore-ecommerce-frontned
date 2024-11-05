@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import UserRegistrationForm from "./UserRegister";
-import VendorRegistrationForm from "./VendorRegister";
 
 const Register = () => {
     const [registrationType, setRegistrationType] = useState(null);
@@ -29,12 +27,9 @@ const Register = () => {
                         </button>
                     </div>
                 </div>
-            ) : (
-                <div>
-                    {registrationType === "user" && <UserRegistrationForm />}
-                    {registrationType === "vendor" && <VendorRegistrationForm />}
-                </div>
-            )}
+            ) : (<div>hello</div>)
+
+            }
         </div>
     );
 };
