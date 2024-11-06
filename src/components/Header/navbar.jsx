@@ -26,13 +26,20 @@ const RegisterButton = () => {
     );
 };
 
+
+
 function Navbar() {
+    const isAuthenticated = !!localStorage.getItem('accesstoken');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    useEffect(() => {
+        if (isAuthenticated) setIsLoggedIn(true);
+    }, [isAuthenticated]);
 
     return (
         <nav className="bg-blue-100 sticky top-0 z-50 w-full p-4">
