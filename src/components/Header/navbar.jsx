@@ -4,6 +4,7 @@ import { faHeart, faShoppingCart, faUser, faSearch, faBars } from '@fortawesome/
 import { NavLink, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import LogoutButton from "../login/Logoutbutton";
+import Cookies from "js-cookie";
 
 const NavLinks = () => {
     return (
@@ -25,7 +26,6 @@ const RegisterButton = () => {
         </Link>
     );
 };
-
 
 
 function Navbar() {
