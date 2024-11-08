@@ -46,9 +46,9 @@ export const logoutUser = async () => {
     try {
         const refreshToken = Cookies.get('refreshtoken');
         console.log(refreshToken);
-        await api.post(``, { token: Cookies.get('refreshtoken') });
-        Cookies.removeItem('accesstoken');
-        Cookies.removeItem('refreshtoken');
+        await api.post(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_LOGOUT_ENDPOINT}`, { token: refreshToken });
+        Cookies.remove('accesstoken');
+        Cookies.remove('refreshtoken');
     }
     catch (error) {
         console.error("Logout failed", error);
