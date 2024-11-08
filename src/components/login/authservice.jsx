@@ -1,4 +1,5 @@
 import api from '../../api'
+import Cookies from 'js-cookie';
 
 export const registerUser = async (email, password, role) => {
     try {
@@ -15,8 +16,8 @@ export const loginUser = async (email, password) => {
     try {
         const response = await api.post(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_LOGIN_ENDPOINT}`, { email, password }, { withCredentials: true });
         const { accessToken, refreshToken } = response.data;
-        localStorage.setItem('accesstoken', accessToken);
-        localStorage.setItem('refreshtoken', refreshToken);
+        Cookies.set('accesstoken', accessToken, { secure: true, sameSite: 'strict' });
+        Cookies.set('refreshtoken', refreshToken, { secure: true, sameSite: 'strict' });
         return response.data;
     }
     catch (error) {
@@ -26,13 +27,13 @@ export const loginUser = async (email, password) => {
 }
 
 export const refreshToken = async () => {
-    const refreshToken = localStorage.getItem('refreshtoken');
+    const refreshToken = Cookies.get('refreshtoken');
     if (!refreshToken) throw new Error("No refresh token found");
 
     try {
         const response = await api.post(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_REFRESH_TOKEN_ENDPOINT}`, { token: refreshToken });
         const { accesstoken } = response.data;
-        localStorage.setItem('accesstoken', accesstoken);
+        Cookies.set('accesstoken', accesstoken, { secure: true, sameSite: 'strict' });
         return accesstoken;
     }
     catch (error) {
@@ -43,11 +44,11 @@ export const refreshToken = async () => {
 
 export const logoutUser = async () => {
     try {
-        const refreshToken = localStorage.getItem('refreshtoken');
+        const refreshToken = Cookies.get('refreshtoken');
         console.log(refreshToken);
-        await api.post(``, { token: localStorage.getItem('refreshtoken') });
-        localStorage.removeItem('accesstoken');
-        localStorage.removeItem('refreshtoken');
+        await api.post(``, { token: Cookies.get('refreshtoken') });
+        Cookies.removeItem('accesstoken');
+        Cookies.removeItem('refreshtoken');
     }
     catch (error) {
         console.error("Logout failed", error);

@@ -10,7 +10,8 @@ const LogoutButton = () => {
       await logoutUser();
       navigate('/authenticate');
     } catch (error) {
-
+      console.log("Error");
+      throw error;
     }
   }
 

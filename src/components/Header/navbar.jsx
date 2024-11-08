@@ -29,7 +29,7 @@ const RegisterButton = () => {
 
 
 function Navbar() {
-    const isAuthenticated = !!localStorage.getItem('accesstoken');
+    const isAuthenticated = !!Cookies.get('accesstoken');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
