@@ -5,7 +5,7 @@ const sampleProducts = new Array(50).fill(null).map((_, index) => ({
     id: index + 1,
     title: `Product ${index + 1}`,
     price: (index + 1) * 100,
-    image: null, // Replace with actual image source if needed
+    image: null,
 }));
 
 const ProductGrid = () => {
@@ -22,11 +22,21 @@ const ProductGrid = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
         }
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
     };
 
     const handlePrevPage = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
+
         }
     };
 
