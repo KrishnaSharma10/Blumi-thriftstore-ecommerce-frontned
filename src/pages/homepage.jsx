@@ -1,14 +1,14 @@
 import React from "react";
 import Slider from "../components/Home/slider";
 import SubHeading from "../components/Home/SubHeading";
-import ProductGrid from "../components/Products/ProductGrid";
+import Worldofproducts from "../components/Products/worldofproducts";
 
-function HomePage(){
-    return(
+function HomePage() {
+    return (
         <div>
-            <Slider/>
-            <SubHeading/>
-            <ProductGrid/>
+            <Slider />
+            <SubHeading />
+            <Worldofproducts />
         </div>
     )
 }
