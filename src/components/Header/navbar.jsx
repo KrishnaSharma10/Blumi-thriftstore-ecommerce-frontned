@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faShoppingCart, faUser, faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/blumilogo.png";
 import LogoutButton from "../login/Logoutbutton";
 import Cookies from "js-cookie";
 
@@ -44,7 +44,7 @@ function Navbar() {
     return (
         <nav className="bg-blue-100 sticky top-0 z-50 w-full p-4">
             <div className="flex justify-between items-center mx-auto">
-                <div className="flex items-center w-24 h-10">
+                <div className="flex items-center pt-1 w-20 h-6 md:w-28 h-14">
                     <Link to='/'>
                         <img src={logo} alt="logo" className=""></img>
                     </Link>
