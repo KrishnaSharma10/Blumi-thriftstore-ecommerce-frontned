@@ -60,14 +60,14 @@ const Login = () => {
                         >
                             Sign In
                         </button>
-                        <Link to="/register" className="text-sm text-blue-200 hover:underline">
+                        <Link to="/register" className="text-sm text-blue-400 hover:underline">
                             Forgot Password?
                         </Link>
                     </div>
                 </form>
                 <p className="text-center mt-6 text-gray-600">
                     Don't have an account?{" "}
-                    <Link to="/authentication/register" className="text-blue-200 hover:underline">
+                    <Link to="/authentication/register" className="text-blue-400 hover:underline">
                         Sign Up
                     </Link>
                 </p>

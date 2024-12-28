@@ -46,7 +46,7 @@ function Navbar() {
             <div className="flex justify-between items-center mx-auto">
                 <div className="flex items-center pt-1 w-20 h-6 md:w-28 h-14">
                     <Link to='/'>
-                        <img src={logo} alt="logo" className=""></img>
+                        <img src={logo} alt="logo" className="max-w-full max-h-20 object-contain"></img>
                     </Link>
                 </div>
                 <div className="hidden md:flex items-center bg-white rounded-lg shadow space-x-2">
@@ -55,7 +55,7 @@ function Navbar() {
                 </div>
                 <NavLink to='/browseproducts' className='hidden md:inline hover:text-blue-700 transition-colors duration-300 text-2xl'><span className="ml-1">Browse Products</span></NavLink>
                 <div className="md:hidden">
-                    <button onClick={toggleMenu} className="text-blue-500 focus:outline-none">
+                    <button onClick={toggleMenu} aria-label="Toggle Menu" aria-expanded={isMenuOpen} className="text-blue-500 focus:outline-none">
                         <FontAwesomeIcon icon={faBars} size="lg" />
                     </button>
                 </div>
@@ -69,7 +69,7 @@ function Navbar() {
                 </div>
             </div>
             {isMenuOpen && (
-                <div className="md:hidden flex flex-col space-y-2 mt-4">
+                <div className="md:hidden flex flex-col space-y-2 mt-4 shadow-lg rounded-lg ">
                     {isLoggedIn ? <NavLinks /> : null}
                     {!isLoggedIn ? <RegisterButton /> : null}
                     <NavLink to='/browseproducts' className='hover:text-red-700 transition-colors duration-300 text-xl'><span className="ml-1">Browse Products</span></NavLink>
