@@ -19,7 +19,7 @@ const useProducts = (currentPage, productsPerPage) => {
             setProducts(response.data.products);
             setTotalPages(response.data.totalPages);
         } catch (err) {
-            setError('Error fetching products');
+            setError(err.response?.data?.message || 'Error fetching products');
             console.error(err);
         } finally {
             setLoading(false);
@@ -28,7 +28,7 @@ const useProducts = (currentPage, productsPerPage) => {
 
     useEffect(() => {
         fetchProducts();
-    }, [currentPage]);
+    }, [currentPage, productsPerPage]);
 
     return { products, totalPages, loading, error };
 };

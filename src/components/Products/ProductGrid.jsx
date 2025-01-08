@@ -1,49 +1,41 @@
 import React, { useState } from 'react';
 import ProductCard from './ProductCard';
-
-const sampleProducts = new Array(50).fill(null).map((_, index) => ({
-    id: index + 1,
-    title: `Product ${index + 1}`,
-    price: (index + 1) * 100,
-    image: null,
-}));
+import useProducts from './getproducts';
 
 const ProductGrid = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 16;
 
-    const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = sampleProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-
-    const totalPages = Math.ceil(sampleProducts.length / productsPerPage);
+    const { products, totalPages, loading, error } = useProducts(currentPage, productsPerPage);
+    console.log(products);
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
         }
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handlePrevPage = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+
+    if (loading) return <div className="text-center py-6">Loading...</div>;
+    if (error) return <div className="text-center py-6 text-red-500">{error}</div>;
 
     return (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                {currentProducts.map((product) => (
-                    <ProductCard key={product.id} image={product.image} title={product.title} price={product.price} />
+                {products.map((product) => (
+                    <ProductCard
+
+                        image={product.image}
+                        title={product.name} // Changed to 'name' as per backend
+                        price={product.price}
+                    />
                 ))}
             </div>
             <div className="mt-6 flex justify-center gap-4">
@@ -67,6 +59,6 @@ const ProductGrid = () => {
             </div>
         </div>
     );
-}
+};
 
 export default ProductGrid;
