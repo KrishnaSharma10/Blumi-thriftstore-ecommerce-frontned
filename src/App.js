@@ -8,6 +8,7 @@ import MainLayout from './Layouts/MainLayout';
 import NotFoundPage from './pages/NotFoundPage';
 import AuthLayout from './Layouts/AuthLayout';
 import Login from './components/login/Login';
+import ProductPage from './pages/ProductPage';
 import { AuthProvider } from '../src/contexts/authcontext';
 
 const router = createBrowserRouter([
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: 'wishlist', element: <Wishlist /> },
       { path: 'browseproducts', element: <BrowseProducts /> },
       { path: '*', element: <NotFoundPage /> },
+      { path: 'productpage', element: <ProductPage /> },
     ],
   },
   {
