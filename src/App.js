@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       { path: 'wishlist', element: <Wishlist /> },
       { path: 'browseproducts', element: <BrowseProducts /> },
       { path: '*', element: <NotFoundPage /> },
-      { path: 'productpage', element: <ProductPage /> },
+      { path: 'productpage/:id', element: <ProductPage /> },
     ],
   },
   {

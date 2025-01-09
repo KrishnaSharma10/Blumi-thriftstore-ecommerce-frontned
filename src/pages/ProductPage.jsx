@@ -1,8 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const ProductPage = ({ name }) => {
+// Simulating a product fetching function
+const getProductById = (id) => {
+    // Replace this with your actual API call
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                id,
+                name: "Nike Men's Air Jordan 1 Zm Air CMFT 2 Running",
+                price: 7000,
+                description: "Nike's Air Jordan 1 Zm Air CMFT 2 offers an iconic design with superior cushioning and support.",
+                imageUrl: "https://via.placeholder.com/400x300",
+                rating: 4.7,
+                reviews: 2,
+                category: "Shoes",
+                brand: "Nike",
+                color: "Black",
+                material: "Leather",
+                dimensions: "30 x 20 x 10 cm",
+                store: "Thrift Rag",
+            });
+        }, 1000); // Simulating a delay
+    });
+};
+
+const ProductPage = ({ productId }) => {
     const [activeTab, setActiveTab] = useState("description");
     const [quantity, setQuantity] = useState(1);
+    const [product, setProduct] = useState(null);
+
+    useEffect(() => {
+        // Fetch the product details by ID
+        const fetchProduct = async () => {
+            const fetchedProduct = await getProductById(productId);
+            setProduct(fetchedProduct);
+        };
+
+        fetchProduct();
+    }, [productId]);
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
@@ -16,13 +51,17 @@ const ProductPage = ({ name }) => {
         alert("Redirecting to checkout...");
     };
 
+    if (!product) {
+        return <div>Loading...</div>; // Loading state
+    }
+
     return (
         <div className="bg-gray-100 flex justify-center items-center min-h-screen py-10">
             <div className="max-w-6xl w-full flex items-start space-x-10">
                 {/* Product Image Section */}
                 <div className="w-1/2 flex flex-col items-center">
                     <img
-                        src="https://via.placeholder.com/400x300"
+                        src={product.imageUrl}
                         alt="Product Image"
                         className="w-3/4 h-auto object-cover rounded-md"
                     />
@@ -36,56 +75,26 @@ const ProductPage = ({ name }) => {
 
                 {/* Product Details Section */}
                 <div className="w-1/2">
-                    <h2 className="text-3xl font-bold">
-                        Nike Men's Air Jordan 1 Zm Air CMFT 2 Running
-                    </h2>
+                    <h2 className="text-3xl font-bold">{product.name}</h2>
                     <div className="flex items-center mt-2">
                         <span className="text-yellow-500 text-lg">★★★★★</span>
-                        <span className="text-gray-500 ml-2 text-sm">(4.7 ratings)</span>
+                        <span className="text-gray-500 ml-2 text-sm">
+                            ({product.reviews} reviews)
+                        </span>
                     </div>
-                    <p className="text-3xl font-semibold text-gray-800 mt-2">₹7000</p>
+                    <p className="text-3xl font-semibold text-gray-800 mt-2">₹{product.price}</p>
 
                     {/* Additional Product Details */}
                     <div className="mt-4 text-gray-700 text-lg">
-                        <p>
-                            <strong>Brand:</strong> Nike
-                        </p>
-                        <p>
-                            <strong>Category:</strong> Shoes
-                        </p>
-                        <p>
-                            <strong>Thrift Store:</strong> Thrift Rag
-                        </p>
-                        <p>
-                            <strong>Colour:</strong> Black
-                        </p>
-                        <p>
-                            <strong>Material:</strong> Leather
-                        </p>
-                        <p>
-                            <strong>Product Dimensions:</strong> 30 x 20 x 10 cm
-                        </p>
+                        <p><strong>Brand:</strong> {product.brand}</p>
+                        <p><strong>Category:</strong> {product.category}</p>
+                        <p><strong>Thrift Store:</strong> {product.store}</p>
+                        <p><strong>Colour:</strong> {product.color}</p>
+                        <p><strong>Material:</strong> {product.material}</p>
+                        <p><strong>Product Dimensions:</strong> {product.dimensions}</p>
                     </div>
 
-                    <p className="text-gray-600 mt-4">
-                        Experience unparalleled comfort and style with Nike's Air Jordan
-                        series, perfect for both casual wear and high-performance running.
-                    </p>
-
-                    {/*
-                    <div className="mt-6">
-                        <p className="font-medium text-gray-700">Size:</p>
-                        <div className="flex flex-wrap mt-2">
-                            {[3, 4, 5, 6, 7, 8, 9, 10, 11].map((size) => (
-                                <button
-                                    key={size}
-                                    className="bg-white border rounded-md px-4 py-2 mr-2 mb-2 hover:bg-gray-200 focus:outline-none"
-                                >
-                                    UK {size}
-                                </button>
-                            ))}
-                        </div>
-                    </div>*/}
+                    <p className="text-gray-600 mt-4">{product.description}</p>
 
                     {/* Quantity Selector and Add to Cart Button */}
                     <div className="flex items-center mt-6">
@@ -109,17 +118,15 @@ const ProductPage = ({ name }) => {
                         <div className="flex">
                             <button
                                 onClick={() => handleTabChange("description")}
-                                className={`text-gray-700 font-semibold px-4 py-2 border-b-2 ${activeTab === "description" ? "border-blue-500" : ""
-                                    } focus:outline-none`}
+                                className={`text-gray-700 font-semibold px-4 py-2 border-b-2 ${activeTab === "description" ? "border-blue-500" : ""} focus:outline-none`}
                             >
                                 Description
                             </button>
                             <button
                                 onClick={() => handleTabChange("reviews")}
-                                className={`text-gray-700 font-semibold px-4 py-2 ml-4 ${activeTab === "reviews" ? "border-blue-500" : ""
-                                    } focus:outline-none`}
+                                className={`text-gray-700 font-semibold px-4 py-2 ml-4 ${activeTab === "reviews" ? "border-blue-500" : ""} focus:outline-none`}
                             >
-                                Reviews (2)
+                                Reviews ({product.reviews})
                             </button>
                         </div>
 
@@ -127,9 +134,7 @@ const ProductPage = ({ name }) => {
                         {activeTab === "description" && (
                             <div className="mt-4">
                                 <p className="text-gray-600 text-lg">
-                                    Nike's Air Jordan 1 Zm Air CMFT 2 offers an iconic design with
-                                    superior cushioning and support, making it ideal for active
-                                    and casual wear.
+                                    {product.description}
                                 </p>
                             </div>
                         )}

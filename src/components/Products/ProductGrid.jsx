@@ -31,9 +31,9 @@ const ProductGrid = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 {products.map((product) => (
                     <ProductCard
-
-                        image={product.image}
-                        title={product.name} // Changed to 'name' as per backend
+                        id={product._id}
+                        image={product.image?.[0]?.url}
+                        title={product.name}
                         price={product.price}
                     />
                 ))}
