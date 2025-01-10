@@ -16,9 +16,8 @@ const useProducts = (currentPage, productsPerPage) => {
                     limit: productsPerPage,
                 }
             });
-            const data = await response.json();
-            setProducts(data.products);
-            setTotalPages(data.totalPages);
+            setProducts(response.data.products);
+            setTotalPages(response.data.totalPages);
         } catch (err) {
             setError(err.response?.data?.message || 'Error fetching products');
             console.error(err);
