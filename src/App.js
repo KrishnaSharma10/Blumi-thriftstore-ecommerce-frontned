@@ -10,7 +10,7 @@ import AuthLayout from './Layouts/AuthLayout';
 import Login from './components/login/Login';
 import ProductPage from './pages/ProductPage';
 import { AuthProvider } from '../src/contexts/authcontext';
-import VendorProductForm from './components/Products/addproduct';
+import AddProductForm from './components/Products/addproduct';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       { path: 'browseproducts', element: <BrowseProducts /> },
       { path: '*', element: <NotFoundPage /> },
       { path: 'productpage/:id', element: <ProductPage /> },
-      { path: 'addproduct', element: <VendorProductForm /> },
+      { path: 'addproduct', element: <AddProductForm /> },
     ],
   },
   {

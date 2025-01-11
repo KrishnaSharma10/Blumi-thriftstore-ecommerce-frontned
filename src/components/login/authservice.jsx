@@ -18,6 +18,8 @@ export const loginUser = async (email, password) => {
         const { accessToken, refreshToken } = response.data;
         Cookies.set('accesstoken', accessToken, { secure: true, sameSite: 'strict' });
         Cookies.set('refreshtoken', refreshToken, { secure: true, sameSite: 'strict' });
+        const x = Cookies.get('accesstoken');
+        console.log(x);
         return response.data;
     }
     catch (error) {

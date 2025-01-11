@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
+import Cookies from 'js-cookie'
 
-const VendorProductForm = () => {
+const AddProductForm = () => {
     const [formData, setFormData] = useState({
         name: "",
         description: "",
@@ -25,30 +27,39 @@ const VendorProductForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const data = new FormData();
         const jsonData = JSON.stringify(formData);
         for (const key in formData) {
-            if (key === "images") {
-                Array.from(formData.images).forEach((file) => data.append("images", file));
-            } else {
+            if (key !== "images") {
                 data.append(key, formData[key]);
             }
         }
-        console.log("Form submitted : ", jsonData);
-        setFormData({
+        console.log("Form sent to backend : ", jsonData);
+        {/*setFormData({
             name: "",
             description: "",
             price: "",
             category: "",
             stock: "",
-            images: null,
             specifications: "",
-        })
+        }) */}
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_ADDPRODUCT_ENDPOINT}`,
+                data, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": `Bearer ${Cookies.get("accesstoken")}`,
+                }
+            }
+            );
+        }
+        catch (error) {
+            console.error("Error adding product : ", error);
+        }
     };
-
     return (
         <div className="py-10">
             <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
@@ -66,7 +77,24 @@ const VendorProductForm = () => {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="mt-1 block w-full border-gray-100 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="px-2 py-1 mt-1 block w-full border-gray-100 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            placeholder="Enter product name"
+                            required
+                        />
+                    </div>
+
+                    {/* Brand */}
+                    <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                            Brand
+                        </label>
+                        <input
+                            type="text"
+                            id="brand"
+                            name="brand"
+                            value={formData.name}
+                            onChange={handleChange}
+                            className="px-2 py-1 mt-1 block w-full border-gray-100 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             placeholder="Enter product name"
                             required
                         />
@@ -83,7 +111,7 @@ const VendorProductForm = () => {
                             rows="4"
                             value={formData.description}
                             onChange={handleChange}
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="px-2 py-1 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             placeholder="Enter product description"
                             required
                         ></textarea>
@@ -100,7 +128,7 @@ const VendorProductForm = () => {
                             name="price"
                             value={formData.price}
                             onChange={handleChange}
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="px-2 py-1 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             placeholder="Enter price in INR"
                             required
                         />
@@ -116,7 +144,7 @@ const VendorProductForm = () => {
                             name="category"
                             value={formData.category}
                             onChange={handleChange}
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="px-2 py-1 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             required
                         >
                             <option value="">Select a category</option>
@@ -139,7 +167,7 @@ const VendorProductForm = () => {
                             name="stock"
                             value={formData.stock}
                             onChange={handleChange}
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="px-2 py-1 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             placeholder="Enter stock quantity"
                             required
                         />
@@ -173,7 +201,7 @@ const VendorProductForm = () => {
                             rows="4"
                             value={formData.specifications}
                             onChange={handleChange}
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="px-2 py-1 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             placeholder="Enter product specifications"
                             required
                         ></textarea>
@@ -194,4 +222,4 @@ const VendorProductForm = () => {
     );
 };
 
-export default VendorProductForm;
+export default AddProductForm;
