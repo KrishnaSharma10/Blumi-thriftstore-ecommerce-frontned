@@ -9,8 +9,11 @@ const useProductById = (productId) => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
+                console.log("2")
                 const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_GETALLPRODUCTS_ENDPOINT}/${productId}`);
+                console.log("yay")
                 setProduct(response.data);
+                console.log("1")
                 setLoading(false);
             } catch (error) {
                 setError('Product not found or server error');
