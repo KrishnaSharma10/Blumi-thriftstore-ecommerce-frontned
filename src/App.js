@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       { path: 'wishlist', element: <Wishlist /> },
       { path: 'browseproducts', element: <BrowseProducts /> },
       { path: '*', element: <NotFoundPage /> },
-      { path: 'productpage/:id', element: <ProductPage /> },
+      { path: 'productpage/:productId', element: <ProductPage /> },
       { path: 'addproduct', element: <AddProductForm /> },
     ],
   },

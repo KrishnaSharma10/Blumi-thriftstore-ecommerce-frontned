@@ -1,43 +1,13 @@
 import React, { useState, useEffect } from "react";
+import useProductById from "../components/Products/getproductbyid";
+import { useParams } from "react-router-dom";
 
-// Simulating a product fetching function
-const getProductById = (id) => {
-    // Replace this with your actual API call
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve({
-                id,
-                name: "Nike Men's Air Jordan 1 Zm Air CMFT 2 Running",
-                price: 7000,
-                description: "Nike's Air Jordan 1 Zm Air CMFT 2 offers an iconic design with superior cushioning and support.",
-                imageUrl: "https://via.placeholder.com/400x300",
-                rating: 4.7,
-                reviews: 2,
-                category: "Shoes",
-                brand: "Nike",
-                color: "Black",
-                material: "Leather",
-                dimensions: "30 x 20 x 10 cm",
-                store: "Thrift Rag",
-            });
-        }, 1000); // Simulating a delay
-    });
-};
-
-const ProductPage = ({ productId }) => {
+const ProductPage = ({ }) => {
+    const { productId } = useParams();
     const [activeTab, setActiveTab] = useState("description");
     const [quantity, setQuantity] = useState(1);
-    const [product, setProduct] = useState(null);
-
-    useEffect(() => {
-        // Fetch the product details by ID
-        const fetchProduct = async () => {
-            const fetchedProduct = await getProductById(productId);
-            setProduct(fetchedProduct);
-        };
-
-        fetchProduct();
-    }, [productId]);
+    console.log(productId)
+    const { product, loading, error } = useProductById(productId);
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
@@ -51,9 +21,23 @@ const ProductPage = ({ productId }) => {
         alert("Redirecting to checkout...");
     };
 
-    if (!product) {
-        return <div>Loading...</div>; // Loading state
-    }
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>{error}</div>;
+
+    const {
+        name = "Unknown Product",
+        price = "Price Not Available",
+        description = "No description provided.",
+        imageUrl = "https://via.placeholder.com/400x300",
+        rating = 0,
+        reviews = 0,
+        category = "General",
+        brand = "Unknown",
+        color = "N/A",
+        material = "N/A",
+        dimensions = "N/A",
+        store = "Unknown Store",
+    } = product;
 
     return (
         <div className="bg-gray-100 flex justify-center items-center min-h-screen py-10">
@@ -61,8 +45,8 @@ const ProductPage = ({ productId }) => {
                 {/* Product Image Section */}
                 <div className="w-1/2 flex flex-col items-center">
                     <img
-                        src={product.imageUrl}
-                        alt="Product Image"
+                        src={imageUrl}
+                        alt={name}
                         className="w-3/4 h-auto object-cover rounded-md"
                     />
                     <button
@@ -75,26 +59,31 @@ const ProductPage = ({ productId }) => {
 
                 {/* Product Details Section */}
                 <div className="w-1/2">
-                    <h2 className="text-3xl font-bold">{product.name}</h2>
+                    <h2 className="text-3xl font-bold">{name}</h2>
                     <div className="flex items-center mt-2">
-                        <span className="text-yellow-500 text-lg">★★★★★</span>
+                        <span className="text-yellow-500 text-lg">
+                            {"★".repeat(Math.round(rating))}
+                            {"☆".repeat(5 - Math.round(rating))}
+                        </span>
                         <span className="text-gray-500 ml-2 text-sm">
-                            ({product.reviews} reviews)
+                            ({reviews} reviews)
                         </span>
                     </div>
-                    <p className="text-3xl font-semibold text-gray-800 mt-2">₹{product.price}</p>
+                    <p className="text-3xl font-semibold text-gray-800 mt-2">
+                        ₹{price}
+                    </p>
 
                     {/* Additional Product Details */}
                     <div className="mt-4 text-gray-700 text-lg">
-                        <p><strong>Brand:</strong> {product.brand}</p>
-                        <p><strong>Category:</strong> {product.category}</p>
-                        <p><strong>Thrift Store:</strong> {product.store}</p>
-                        <p><strong>Colour:</strong> {product.color}</p>
-                        <p><strong>Material:</strong> {product.material}</p>
-                        <p><strong>Product Dimensions:</strong> {product.dimensions}</p>
+                        <p><strong>Brand:</strong> {brand}</p>
+                        <p><strong>Category:</strong> {category}</p>
+                        <p><strong>Thrift Store:</strong> {store}</p>
+                        <p><strong>Colour:</strong> {color}</p>
+                        <p><strong>Material:</strong> {material}</p>
+                        <p><strong>Product Dimensions:</strong> {dimensions}</p>
                     </div>
 
-                    <p className="text-gray-600 mt-4">{product.description}</p>
+                    <p className="text-gray-600 mt-4">{description}</p>
 
                     {/* Quantity Selector and Add to Cart Button */}
                     <div className="flex items-center mt-6">
@@ -126,7 +115,7 @@ const ProductPage = ({ productId }) => {
                                 onClick={() => handleTabChange("reviews")}
                                 className={`text-gray-700 font-semibold px-4 py-2 ml-4 ${activeTab === "reviews" ? "border-blue-500" : ""} focus:outline-none`}
                             >
-                                Reviews ({product.reviews})
+                                Reviews ({reviews})
                             </button>
                         </div>
 
@@ -134,7 +123,7 @@ const ProductPage = ({ productId }) => {
                         {activeTab === "description" && (
                             <div className="mt-4">
                                 <p className="text-gray-600 text-lg">
-                                    {product.description}
+                                    {description}
                                 </p>
                             </div>
                         )}

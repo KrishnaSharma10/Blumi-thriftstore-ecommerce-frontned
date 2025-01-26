@@ -12,7 +12,6 @@ const ProductCard = ({ id, image, title, price }) => {
 
     return (
         <div className="bg-blue-100 w-full sm:w-64 md:w-72 lg:w-80 min-h-[20rem] shadow-lg rounded-md overflow-hidden relative">
-            {/* Wrapping the image in a Link component */}
             <Link to={`/productpage/${id}`} className="cursor-pointer">
                 <img src={image || random} className="w-full h-40 object-cover" alt={title} />
             </Link>
