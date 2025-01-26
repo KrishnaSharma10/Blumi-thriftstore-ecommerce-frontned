@@ -1,61 +1,57 @@
 import React, { useState } from 'react';
 import ProductCard from './ProductCard';
-import useProducts from './getproducts';
 
 const ProductGrid = () => {
-    const [currentPage, setCurrentPage] = useState(1);
+    const sampleProducts = new Array(50).fill(null).map((_, index) => ({
+        _id: `${index + 1}`,
+        title: `Product ${index + 1}`,
+        price: (index + 1) * 100,
+        image: null, // Replace with actual image source if needed
+    }));
+
     const productsPerPage = 16;
+    const totalPages = Math.ceil(sampleProducts.length / productsPerPage);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    const { products, totalPages, loading, error } = useProducts(currentPage, productsPerPage);
-    console.log(products);
+    // Get products for the current page
+    const currentProducts = sampleProducts.slice(
+        (currentPage - 1) * productsPerPage,
+        currentPage * productsPerPage
+    );
 
-    const handleNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-        }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
     };
-
-    const handlePrevPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    if (loading) return <div className="text-center py-6">Loading...</div>;
-    if (error) return <div className="text-center py-6 text-red-500">{error}</div>;
 
     return (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-                {products.map((product) => (
+                {currentProducts.map((product) => (
                     <ProductCard
+                        key={product._id}
                         id={product._id}
-                        image={product.image?.[0]?.url}
-                        title={product.name}
+                        image={product.image}
+                        title={product.title}
                         price={product.price}
                     />
                 ))}
             </div>
-            <div className="mt-6 flex justify-center gap-4">
-                <button
-                    onClick={handlePrevPage}
-                    disabled={currentPage === 1}
-                    className={`px-4 py-2 bg-gray-300 rounded-md ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-400'}`}
-                >
-                    Previous
-                </button>
-                <button
-                    onClick={handleNextPage}
-                    disabled={currentPage === totalPages}
-                    className={`px-4 py-2 bg-gray-300 rounded-md ${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-400'}`}
-                >
-                    Next
-                </button>
-            </div>
-            <div className="mt-2 text-center">
-                Page {currentPage} of {totalPages}
+            {/* Pagination */}
+            <div className="mt-6 flex justify-center">
+                <nav className="flex space-x-2">
+                    {[...Array(totalPages).keys()].map((pageIndex) => (
+                        <button
+                            key={pageIndex + 1}
+                            onClick={() => handlePageChange(pageIndex + 1)}
+                            className={`px-4 py-2 border rounded-md ${currentPage === pageIndex + 1
+                                ? 'bg-blue-500 text-white'
+                                : 'bg-white text-black'
+                                }`}
+                        >
+                            {pageIndex + 1}
+                        </button>
+                    ))}
+                </nav>
             </div>
         </div>
     );

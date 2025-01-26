@@ -19,7 +19,7 @@ const Worldofproducts = () => {
                     <ProductCard key={product._id} id={product._id} image={product.image} title={product.title} price={product.price} />
                 ))}
             </div>
-            <ProductCard key={"63f7a5c4a3c9d2e10f5a9e31"} id={"63f7a5c4a3c9d2e10f5a9e31"} image={null} title={"jai mata di"} price={1000} />
+            {/*<ProductCard key={"63f7a5c4a3c9d2e10f5a9e31"} id={"63f7a5c4a3c9d2e10f5a9e31"} image={null} title={"jai mata di"} price={1000} />*/}
         </div>
     )
 }
